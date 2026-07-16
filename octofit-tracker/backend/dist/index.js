@@ -1,45 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const users_1 = __importDefault(require("./routes/users"));
-const teams_1 = __importDefault(require("./routes/teams"));
-const activities_1 = __importDefault(require("./routes/activities"));
-const leaderboard_1 = __importDefault(require("./routes/leaderboard"));
-const workouts_1 = __importDefault(require("./routes/workouts"));
-const utils_1 = require("./routes/utils");
-const app = (0, express_1.default)();
-const port = Number(process.env.PORT) || 8000;
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
-app.use(express_1.default.json());
-app.get('/api/health', (_req, res) => {
-    res.json({ status: 'ok', service: 'octofit-backend', baseUrl: (0, utils_1.getBaseUrl)() });
-});
-app.get('/', (_req, res) => {
-    res.json({
-        service: 'octofit-backend',
-        baseUrl: (0, utils_1.getBaseUrl)(),
-        routes: ['/api/health', '/api/users/', '/api/teams/', '/api/activities/', '/api/leaderboard/', '/api/workouts/']
-    });
-});
-app.use('/api/users', users_1.default);
-app.use('/api/teams', teams_1.default);
-app.use('/api/activities', activities_1.default);
-app.use('/api/leaderboard', leaderboard_1.default);
-app.use('/api/workouts', workouts_1.default);
-mongoose_1.default
-    .connect(mongoUri)
-    .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(port, '0.0.0.0', () => {
-        console.log(`Backend listening on port ${port}`);
-        console.log(`Base URL: ${(0, utils_1.getBaseUrl)()}`);
-    });
-})
-    .catch((error) => {
-    console.error('MongoDB connection failed', error);
-    process.exit(1);
-});
+__exportStar(require("./server"), exports);
