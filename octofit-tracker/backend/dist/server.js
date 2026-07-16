@@ -16,12 +16,17 @@ const port = Number(process.env.PORT) || 8000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 app.use(express_1.default.json());
 app.get('/api/health', (_req, res) => {
-    res.json({ status: 'ok', service: 'octofit-backend', baseUrl: (0, utils_1.getBaseUrl)() });
+    res.json({
+        status: 'ok',
+        service: 'octofit-backend',
+        ...(0, utils_1.getApiMetadata)(),
+        baseUrl: (0, utils_1.getBaseUrl)()
+    });
 });
 app.get('/', (_req, res) => {
     res.json({
         service: 'octofit-backend',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         routes: ['/api/health', '/api/users/', '/api/teams/', '/api/activities/', '/api/leaderboard/', '/api/workouts/']
     });
 });

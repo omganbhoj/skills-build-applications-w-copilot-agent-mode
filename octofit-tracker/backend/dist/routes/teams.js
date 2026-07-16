@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
     const teams = await team_1.Team.find({}).populate('members').populate('captain').lean();
     res.json({
         message: 'Teams route',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         endpoint: '/api/teams/',
         teams
     });

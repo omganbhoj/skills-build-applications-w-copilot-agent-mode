@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { User } from '../models/user';
-import { getBaseUrl } from './utils';
+import { getApiMetadata } from './utils';
 
 const router = Router();
 
@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
   const users = await User.find({}).lean();
   res.json({
     message: 'Users route',
-    baseUrl: getBaseUrl(),
+    ...getApiMetadata(),
     endpoint: '/api/users/',
     users
   });

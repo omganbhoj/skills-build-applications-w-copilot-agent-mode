@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Leaderboard } from '../models/leaderboard';
-import { getBaseUrl } from './utils';
+import { getApiMetadata } from './utils';
 
 const router = Router();
 
@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
   const leaderboard = await Leaderboard.find({}).sort({ rank: 1 }).lean();
   res.json({
     message: 'Leaderboard route',
-    baseUrl: getBaseUrl(),
+    ...getApiMetadata(),
     endpoint: '/api/leaderboard/',
     leaderboard
   });

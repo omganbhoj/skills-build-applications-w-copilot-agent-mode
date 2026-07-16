@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
     const leaderboard = await leaderboard_1.Leaderboard.find({}).sort({ rank: 1 }).lean();
     res.json({
         message: 'Leaderboard route',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         endpoint: '/api/leaderboard/',
         leaderboard
     });

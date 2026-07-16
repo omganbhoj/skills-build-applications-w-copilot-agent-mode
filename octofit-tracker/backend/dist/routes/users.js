@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
     const users = await user_1.User.find({}).lean();
     res.json({
         message: 'Users route',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         endpoint: '/api/users/',
         users
     });

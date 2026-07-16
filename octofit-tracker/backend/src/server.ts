@@ -5,7 +5,7 @@ import teamsRouter from './routes/teams';
 import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
 import workoutsRouter from './routes/workouts';
-import { getBaseUrl } from './routes/utils';
+import { getApiMetadata, getBaseUrl } from './routes/utils';
 
 const app = express();
 const port = Number(process.env.PORT) || 8000;
@@ -14,13 +14,18 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_d
 app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'octofit-backend', baseUrl: getBaseUrl() });
+  res.json({
+    status: 'ok',
+    service: 'octofit-backend',
+    ...getApiMetadata(),
+    baseUrl: getBaseUrl()
+  });
 });
 
 app.get('/', (_req, res) => {
   res.json({
     service: 'octofit-backend',
-    baseUrl: getBaseUrl(),
+    ...getApiMetadata(),
     routes: ['/api/health', '/api/users/', '/api/teams/', '/api/activities/', '/api/leaderboard/', '/api/workouts/']
   });
 });

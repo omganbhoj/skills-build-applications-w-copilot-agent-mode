@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
     const activities = await activity_1.Activity.find({}).lean();
     res.json({
         message: 'Activities route',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         endpoint: '/api/activities/',
         activities
     });

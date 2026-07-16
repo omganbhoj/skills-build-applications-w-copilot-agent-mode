@@ -8,7 +8,7 @@ router.get('/', async (_req, res) => {
     const workouts = await workout_1.Workout.find({}).lean();
     res.json({
         message: 'Workouts route',
-        baseUrl: (0, utils_1.getBaseUrl)(),
+        ...(0, utils_1.getApiMetadata)(),
         endpoint: '/api/workouts/',
         workouts
     });
