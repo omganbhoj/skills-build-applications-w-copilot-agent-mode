@@ -29,7 +29,7 @@ export default function Teams() {
   useEffect(() => {
     async function loadTeams() {
       try {
-        const response = await fetch(getApiUrl('/api/teams/'));
+        const response = await fetch(getApiUrl('-8000.app.github.dev/api/teams/'));
         const payload = await response.json();
         setTeams(getCollectionItems(payload));
       } catch (err) {

@@ -29,7 +29,7 @@ export default function Workouts() {
   useEffect(() => {
     async function loadWorkouts() {
       try {
-        const response = await fetch(getApiUrl('/api/workouts/'));
+        const response = await fetch(getApiUrl('-8000.app.github.dev/api/workouts/'));
         const payload = await response.json();
         setWorkouts(getCollectionItems(payload));
       } catch (err) {

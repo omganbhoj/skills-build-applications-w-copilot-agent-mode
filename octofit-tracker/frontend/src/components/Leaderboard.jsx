@@ -29,7 +29,7 @@ export default function Leaderboard() {
   useEffect(() => {
     async function loadLeaderboard() {
       try {
-        const response = await fetch(getApiUrl('/api/leaderboard/'));
+        const response = await fetch(getApiUrl('-8000.app.github.dev/api/leaderboard/'));
         const payload = await response.json();
         setLeaderboard(getCollectionItems(payload));
       } catch (err) {

@@ -29,7 +29,7 @@ export default function Users() {
   useEffect(() => {
     async function loadUsers() {
       try {
-        const response = await fetch(getApiUrl('/api/users/'));
+        const response = await fetch(getApiUrl('-8000.app.github.dev/api/users/'));
         const payload = await response.json();
         setUsers(getCollectionItems(payload));
       } catch (err) {

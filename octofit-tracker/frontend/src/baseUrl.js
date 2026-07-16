@@ -5,8 +5,9 @@ function getCodespaceName() {
 export function getBaseUrl() {
   const codespaceName = getCodespaceName();
   return codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
+    ? `https://${codespaceName}`
     : 'http://localhost:8000';
+    //`https://${codespaceName}-8000.app.github.dev`
 }
 
 export function getApiUrl(path = '') {

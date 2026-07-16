@@ -29,7 +29,7 @@ export default function Activities() {
   useEffect(() => {
     async function loadActivities() {
       try {
-        const response = await fetch(getApiUrl('/api/activities/'));
+        const response = await fetch(getApiUrl('-8000.app.github.dev/api/activities/'));
         const payload = await response.json();
         setActivities(getCollectionItems(payload));
       } catch (err) {
