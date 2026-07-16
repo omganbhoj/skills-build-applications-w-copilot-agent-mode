@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { getApiUrl } from './baseUrl'
 import './App.css'
+import Activities from './components/Activities'
+import Leaderboard from './components/Leaderboard'
+import Teams from './components/Teams'
+import Users from './components/Users'
+import Workouts from './components/Workouts'
 
 function Home() {
   const [apiStatus, setApiStatus] = useState('Checking backend connection...')
@@ -43,9 +48,29 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <div className="container py-3">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded mb-4">
+          <div className="container-fluid">
+            <span className="navbar-brand">OctoFit Tracker</span>
+            <div className="navbar-nav">
+              <NavLink className="nav-link" to="/">Home</NavLink>
+              <NavLink className="nav-link" to="/users">Users</NavLink>
+              <NavLink className="nav-link" to="/teams">Teams</NavLink>
+              <NavLink className="nav-link" to="/activities">Activities</NavLink>
+              <NavLink className="nav-link" to="/leaderboard">Leaderboard</NavLink>
+              <NavLink className="nav-link" to="/workouts">Workouts</NavLink>
+            </div>
+          </div>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/workouts" element={<Workouts />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   )
 }
