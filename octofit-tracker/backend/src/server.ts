@@ -11,6 +11,7 @@ const app = express();
 const port = Number(process.env.PORT) || 8000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 const CODESPACE_NAME = getCodespaceName();
+const CODESPACE_URL = getBaseUrl();
 
 app.use(express.json());
 
@@ -19,7 +20,7 @@ app.get('/api/health', (_req, res) => {
     status: 'ok',
     service: 'octofit-backend',
     ...getApiMetadata(),
-    baseUrl: getBaseUrl()
+    baseUrl: CODESPACE_URL
   });
 });
 
